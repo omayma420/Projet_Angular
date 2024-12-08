@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +29,7 @@ export class LoginComponent {
     // Vérifier les identifiants
     if (this.authService.login(email, password)) {
       console.log('Login réussi avec :', this.loginData);
-      this.router.navigate(['/home']);  // Redirection vers la page d'accueil après connexion
+      this.router.navigate(['/reservation']);  
     } else {
       console.log('Échec de l\'authentification');
       alert('Identifiants incorrects !');

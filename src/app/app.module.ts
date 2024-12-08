@@ -14,7 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductCorpsComponent } from './components/product-corps/product-corps.component';
 import { CartComponent } from './components/carts/carts.component';
 import { FormsModule } from '@angular/forms';
-import { SignupComponent } from './signup/signup.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { ReservationFormComponent } from './components/reservation-form/reservation-form.component';  // Ajoute ceci
 import { ReactiveFormsModule } from '@angular/forms';
 

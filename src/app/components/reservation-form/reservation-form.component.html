@@ -40,7 +40,9 @@
           <small *ngIf="reservationForm.get('adresse')?.errors?.['required']">L'adresse est requise.</small>
         </div>
       </div>
-  
+      <div class="form-group">
+        <p>Total à payer : {{ totalPrice }} TND</p>
+      </div>
       <!-- Submit Button -->
       <button type="submit" [disabled]="reservationForm.invalid">Soumettre</button>
     </form>

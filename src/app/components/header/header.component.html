@@ -1,45 +1,52 @@
 <header>
-
-
   <div class="header-content">
-    
+    <!-- Logo -->
     <div class="logo">
       <img src="./assets/image/logo.PNG" alt="Logo" />
     </div>
 
-     
-    
+    <!-- Icônes de recherche et utilisateur -->
     <div class="icons">
+      <!-- Barre de recherche -->
       <div class="search-bar">
         <input
           type="text"
           placeholder="Rechercher"
           [(ngModel)]="searchQuery"
-          (keyup.enter)="handleSearch()"
-        />
-        <button class="search-btn" type="button" (click)="handleSearch()">
+          (keyup.enter)="handleSearch()" />  <!-- Recherche sur entrée -->
+        
+        <button class="search-btn" type="button" (click)="handleSearch()"> <!-- Recherche sur clic -->
           <i class="fas fa-search"></i>
         </button>
       </div>
+
+      <!-- Icône utilisateur -->
       <span class="user-icon" (click)="navigateToLogin()">
         <img src="./assets/image/user.png" alt="User Icon" />
       </span>
+
+      <!-- Icône panier avec nombre d'articles -->
       <span class="cart-icon" (click)="navigateToCart()">
         <img src="./assets/image/panier.png" alt="Cart Icon" />
-        <span class="cart-count">{{ cartCount }}</span> <!-- Dynamically display cart count -->
+        <span class="cart-count">{{ cartCount }}</span> <!-- Affiche le nombre d'articles dans le panier -->
       </span>
     </div>
   </div>
 
-  <!-- Affichage des résultats de recherche (optionnel) -->
-  <div *ngIf="searchResults.length > 0">
-    <h3>Résultats de recherche :</h3>
-    <ul>
-      <li *ngFor="let product of searchResults">
-        <img [src]="product.image" alt="{{ product.name }}" />
-        <p>{{ product.name }}</p>
-        <p>{{ product.price }} DT</p>
-      </li>
-    </ul>
+  <!-- Affichage des résultats de recherche -->
+  <div *ngIf="searchResults.length > 0" class="search-results">
+    <div class="shop-content">
+      <!-- Itérer sur les résultats de recherche -->
+      <div *ngFor="let product of searchResults" class="product-box">
+        <img [src]="product.image" alt="{{ product.name }}" class="product-img">
+        <div class="product-info">
+          <h2 class="product-title">{{ product.name }}</h2>
+          <span class="product-price">{{ product.price }} TND</span>
+          <button class="btn-add-to-cart" (click)="addToCart(product)">
+            <i class="bx bx-shopping-bag"></i> Ajouter au Panier
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
