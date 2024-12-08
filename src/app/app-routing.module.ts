@@ -6,6 +6,7 @@ import { ProductVisageComponent } from './components/product-visage/product-visa
 import { ProductCorpsComponent } from './components/product-corps/product-corps.component';  
 import { CartComponent } from './components/carts/carts.component'; // Importer le composant du panier
 import { SignupComponent } from './signup/signup.component';
+import { ReservationFormComponent } from './components/reservation-form/reservation-form.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'visage', component: ProductVisageComponent },
   { path: 'corps', component: ProductCorpsComponent },
-  { path: 'cart', component: CartComponent }, // Route pour le panier
+  { path: 'cart', component: CartComponent }, 
+  { path: 'reservation' , component: ReservationFormComponent}
 
 
 ];

@@ -1,32 +1,32 @@
 <header>
-  <div class="top-bar">
-    <p>🚚 Livraison gratuite à partir de 99 DT d'achat</p>
-    <button class="install-btn">📞 +216 53659874</button>
-  </div>
+
 
   <div class="header-content">
-    <div class="search-bar">
-      <input
-        type="text"
-        placeholder="Rechercher"
-        [(ngModel)]="searchQuery"
-        (keyup.enter)="handleSearch()"
-      />
-      <button class="search-btn" type="button" (click)="handleSearch()">
-        <i class="fas fa-search"></i>
-      </button>
-    </div>
     
     <div class="logo">
       <img src="./assets/image/logo.PNG" alt="Logo" />
     </div>
+
+     
     
     <div class="icons">
+      <div class="search-bar">
+        <input
+          type="text"
+          placeholder="Rechercher"
+          [(ngModel)]="searchQuery"
+          (keyup.enter)="handleSearch()"
+        />
+        <button class="search-btn" type="button" (click)="handleSearch()">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
       <span class="user-icon" (click)="navigateToLogin()">
         <img src="./assets/image/user.png" alt="User Icon" />
       </span>
-      <span class="cart-icon">
+      <span class="cart-icon" (click)="navigateToCart()">
         <img src="./assets/image/panier.png" alt="Cart Icon" />
+        <span class="cart-count">{{ cartCount }}</span> <!-- Dynamically display cart count -->
       </span>
     </div>
   </div>

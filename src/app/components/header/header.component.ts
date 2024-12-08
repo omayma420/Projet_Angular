@@ -1,28 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
-  searchQuery: string = ''; // La requête de recherche
+export class HeaderComponent implements OnInit {
+  cartCount: number = 0; // Compteur de produits dans le panier
+  searchQuery: string = ''; // Requête de recherche
   searchResults: any[] = []; // Résultats de recherche
 
-  constructor(private router: Router, private productService: ProductService) {}
+  constructor(
+    private router: Router,
+    private productService: ProductService,
+    private cartService: CartService
+  ) {}
+
+  ngOnInit(): void {
+    // Initialiser le compteur avec les articles déjà dans le panier
+    this.cartCount = this.cartService.getCartItems().length;
+
+    // Souscription pour mettre à jour dynamiquement le compteur
+    this.cartService.cartItems$.subscribe(cartItems => {
+      this.cartCount = cartItems.length;
+    });
+  }
 
   handleSearch(): void {
     const trimmedQuery = this.searchQuery.trim();
 
     if (trimmedQuery) {
-      // Effectuer la recherche des produits
       this.productService.searchProducts(trimmedQuery).subscribe(
         (products) => {
           this.searchResults = products; // Mettre à jour les résultats
           console.log(`Produits trouvés :`, this.searchResults);
-          // Vous pouvez rediriger vers une page de résultats ou afficher les résultats dans le même composant
+
+          // Redirection vers une page de résultats
           this.router.navigate(['/search'], { queryParams: { q: trimmedQuery } });
         },
         (error) => {
@@ -36,5 +52,9 @@ export class HeaderComponent {
 
   navigateToLogin(): void {
     this.router.navigate(['/login']);
+  }
+
+  navigateToCart(): void {
+    this.router.navigate(['/cart']);
   }
 }
