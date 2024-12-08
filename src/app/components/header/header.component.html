@@ -1,0 +1,45 @@
+<header>
+  <div class="top-bar">
+    <p>🚚 Livraison gratuite à partir de 99 DT d'achat</p>
+    <button class="install-btn">📞 +216 53659874</button>
+  </div>
+
+  <div class="header-content">
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Rechercher"
+        [(ngModel)]="searchQuery"
+        (keyup.enter)="handleSearch()"
+      />
+      <button class="search-btn" type="button" (click)="handleSearch()">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+    
+    <div class="logo">
+      <img src="./assets/image/logo.PNG" alt="Logo" />
+    </div>
+    
+    <div class="icons">
+      <span class="user-icon" (click)="navigateToLogin()">
+        <img src="./assets/image/user.png" alt="User Icon" />
+      </span>
+      <span class="cart-icon">
+        <img src="./assets/image/panier.png" alt="Cart Icon" />
+      </span>
+    </div>
+  </div>
+
+  <!-- Affichage des résultats de recherche (optionnel) -->
+  <div *ngIf="searchResults.length > 0">
+    <h3>Résultats de recherche :</h3>
+    <ul>
+      <li *ngFor="let product of searchResults">
+        <img [src]="product.image" alt="{{ product.name }}" />
+        <p>{{ product.name }}</p>
+        <p>{{ product.price }} DT</p>
+      </li>
+    </ul>
+  </div>
+</header>

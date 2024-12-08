@@ -1,0 +1,29 @@
+<section class="cart container">
+    <h2 class="cart-title">Votre Panier</h2>
+  
+    <!-- Si le panier contient des articles -->
+    <div *ngIf="cartItems.length > 0; else emptyCart">
+      <!-- Liste des articles -->
+      <div *ngFor="let item of cartItems" class="cart-item">
+        <!-- Image du produit -->
+        <img [src]="item.image" alt="{{ item.name }}" class="cart-item-image">
+  
+        <!-- Détails de l'article -->
+        <div class="cart-item-details">
+          <h3 class="cart-item-name">{{ item.name }}</h3>
+          <p class="cart-item-price">{{ item.price }} TND</p>
+          <button class="cart-item-remove-btn" (click)="removeFromCart(item.id)">Supprimer</button>
+
+        </div>
+      </div>
+  
+      <!-- Bouton pour vider le panier -->
+      <button class="btn-clear-cart" (click)="clearCart()">Vider le Panier</button>
+    </div>
+  
+    <!-- Message si le panier est vide -->
+    <ng-template #emptyCart>
+      <p class="empty-cart-message">Votre panier est vide.</p>
+    </ng-template>
+  </section>
+  
